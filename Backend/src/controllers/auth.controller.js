@@ -78,7 +78,7 @@ const logout = asyncHandler(async (req, res) => {
   res.cookie("jwt", "", { maxAge: 0 });
   res.status(200).json(new ApiResponse(200, "Logout successfully"));
  } catch (error) {
-  console.log("Error in logout controller:", error.message);
+
   throw new ApiError(500, "Internal server error");
  }
 });
