@@ -4,6 +4,8 @@ import ApiError from "../utils/ApiError.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
 import { generateToken } from "../utils/TokenGen.js";
 import { asyncHandler } from "../utils/asyncHandler.js";
+import cloudinary from "../lib/cloudinary.js";
+// import jwt from "jsonwebtoken"
 
 const signUp = asyncHandler(async (req, res) => {
  const { fullName, password, email } = req.body
@@ -83,4 +85,49 @@ const logout = asyncHandler(async (req, res) => {
  }
 });
 
-export { signin, signUp, logout };
+
+const updateProfile = asyncHandler(async (req, res) => {
+ try {
+  const { profilePic } = req.body;
+  const userId = req.user._id;
+
+  if (!profilePic) {
+   throw new ApiError(404, "User profile not found");
+  }
+
+  const uploadResponse = await cloudinary.uploader.upload(profilePic);
+
+  const updateUser = await User.findByIdAndUpdate(
+   userId,
+   { profilePic: uploadResponse.secure_url },
+   { new: true }
+  );
+
+  if (!updateUser) {
+   throw new ApiError(404, "User not found or profile update failed");
+  }
+
+  res.status(200).json({ updateUser });
+ } catch (error) {
+  console.error("Error in updateProfile controller:", error.message);
+  res.status(error.statusCode || 500).json({
+   error: error.message || "Internal server error"
+  });
+ }
+});
+
+const authcheck = asyncHandler(async (req, res, next) => {
+ try {
+  if (!req.user) {
+   return next(new ApiError(401, "Unauthorized - No user found"));
+  }
+
+  res.status(200).json(new ApiResponse(200, req.user, "User authenticated successfully"));
+ } catch (error) {
+  console.error("Error in checkauth controller:", error.message);
+  next(new ApiError(500, "Internal server error"));
+ }
+});
+
+
+export { signin, signUp, logout, updateProfile, authcheck };
