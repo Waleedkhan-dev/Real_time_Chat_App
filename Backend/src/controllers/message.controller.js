@@ -6,14 +6,14 @@ import ApiError from "../utils/ApiError.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
 // import { generateToken } from "../utils/TokenGen";
 import { asyncHandler } from "../utils/asyncHandler.js";
-// import cloudinary from "../lib/cloudinary";
+
 
 
 const getuserFromSidebar = asyncHandler(async (req, res) => {
  try {
   const logedInUserId = req.user._id
 
-  const filterUsers = await User.find({ _id: { ne: logedInUserId } }).select("-password")
+  const filterUsers = await User.find({ _id: { $ne: logedInUserId } }).select("-password")
 
   res.status(200).json(new ApiResponse(200, "message send successfuly"))
  } catch (error) {
@@ -45,7 +45,7 @@ const sendMessage = asyncHandler(async (req, res) => {
  try {
 
   const { text, image } = req.body
-  const { id: receicerId } = req.params
+  const { id: receiverId } = req.params
   const senderId = req.user._id
 
   let imageUrl;
@@ -71,4 +71,4 @@ const sendMessage = asyncHandler(async (req, res) => {
 
  }
 })
-export { getuserFromSidebar }
+export { getuserFromSidebar, getmessage, sendMessage }
