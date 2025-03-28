@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const signUp = async (userData) => {
- const { data } = await axios.post("/api/auth", userData);
+ const { data } = await axios.post("/api/auth/signup", userData);
  return data;
 };
 
