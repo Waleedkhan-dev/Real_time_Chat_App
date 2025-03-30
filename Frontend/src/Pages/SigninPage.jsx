@@ -3,7 +3,6 @@ import { AiFillProfile } from "react-icons/ai";
 import { MdEmail } from "react-icons/md";
 import { RiLockPasswordLine } from "react-icons/ri";
 import { Link } from "react-router-dom";
-
 const SigninPage = () => {
  return (
   <Fragment>

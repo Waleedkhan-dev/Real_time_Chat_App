@@ -7,5 +7,4 @@ router.post("/signin", signin)
 router.post("/logout", logout)
 router.post("/update-profile", protectRoute, updateProfile)
 router.get("/check", protectRoute, authcheck)
-
 export default router;

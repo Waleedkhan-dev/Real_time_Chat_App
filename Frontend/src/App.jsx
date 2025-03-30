@@ -27,7 +27,7 @@ function App() {
         <Route path="/signup" element={!user ? <SigUpPage /> : <Navigate to="/" />} />
         <Route path="/signin" element={!user ? <SigninPage /> : <Navigate to="/" />} />
         <Route path="/settings" element={<Settings />} />
-        <Route path="/profile" element={<ProtectedRoute element={<ProfilePage />} />} />
+        <Route path="/profile" element={<ProfilePage />} />
       </Routes>
     </Fragment>
   );
