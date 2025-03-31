@@ -7,6 +7,8 @@ import ApiError from "../utils/ApiError.js"
 const protectRoute = asyncHandler(async (req, res, next) => {
  try {
   const token = req.cookies.jwt;
+  console.log("token", token);
+
   if (!token) {
    return res.status(401).json(new ApiError(401, "Token not provided or unauthorized access"));
   }
