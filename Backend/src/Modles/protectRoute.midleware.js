@@ -15,6 +15,8 @@ const protectRoute = asyncHandler(async (req, res, next) => {
 
   const decoded = jwt.verify(token, process.env.JWT_SECRET);
   const user = await User.findById(decoded.userId).select("-password");
+  console.log("user data show in the user", user);
+
 
   if (!user) {
    return res.status(404).json(new ApiError(404, "User not found"));
