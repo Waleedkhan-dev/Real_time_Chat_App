@@ -54,7 +54,7 @@ const signin = asyncHandler(async (req, res) => {
  try {
   const user = await User.findOne({ email })
   if (!user) {
-   throw new ApiError(400, "Email not found")
+   throw new ApiError(400, "Email not found give the correct email")
   }
 
   const isPassword = await bcrypt.compare(password, user.password)

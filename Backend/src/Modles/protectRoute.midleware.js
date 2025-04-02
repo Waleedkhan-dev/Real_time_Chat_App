@@ -19,7 +19,7 @@ const protectRoute = asyncHandler(async (req, res, next) => {
 
 
   if (!user) {
-   return res.status(404).json(new ApiError(404, "User not found"));
+   return res.status(404).json(new ApiError(404, "User not  found please try again"));
   }
 
   req.user = user;
