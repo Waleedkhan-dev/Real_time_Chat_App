@@ -19,7 +19,7 @@ const signUp = asyncHandler(async (req, res) => {
   }
 
   const user = await User.findOne({ email });
-  if (user) throw new ApiError(400, "Email already exists");
+  if (user) throw new ApiError(400, "Email already exists try another email");
 
   const salt = await bcrypt.genSalt(10);
   const hashedPassword = await bcrypt.hash(password, salt);
