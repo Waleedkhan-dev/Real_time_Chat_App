@@ -44,7 +44,7 @@ const signUp = asyncHandler(async (req, res) => {
    })
   );
  } catch (error) {
-  // console.log("Error in signUp controllers:", error.message);
+  console.log("Error in signUp controllers:", error.message);
   throw new ApiError(500, "Internal server error");
  }
 });
