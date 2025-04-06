@@ -2,7 +2,11 @@ import React, { Fragment } from 'react'
 const Navbar = () => {
  return (
   <Fragment>
-   <h1>Hello i am navbar please take me again</h1>
+   <nav className='flex justify-evenly bg-gray-600'>
+    <li className='list-none text-white p-2'><a href="#">chat</a></li>
+    <li className='list-none text-white p-2'><a href="#">Unread Message</a></li>
+    <li className='list-none text-white p-2'><a href="#">Status</a></li>
+   </nav>
   </Fragment>
  )
 }
