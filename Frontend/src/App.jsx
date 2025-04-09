@@ -20,15 +20,17 @@ function App() {
   if (loading) return <h1>Loading...</h1>;
 
   return (
-    <Fragment>
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<ProtectedRoute element={<HomePage />} />} />
-        <Route path="/signup" element={!user ? <SigUpPage /> : <Navigate to="/" />} />
-        <Route path="/signin" element={!user ? <SigninPage /> : <Navigate to="/" />} />
-        <Route path="/settings" element={<Settings />} />
-        <Route path="/profile" element={<ProfilePage />} />
-      </Routes>
+    <Fragment >
+      <div data-theme="retro">
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<ProtectedRoute element={<HomePage />} />} />
+          <Route path="/signup" element={!user ? <SigUpPage /> : <Navigate to="/" />} />
+          <Route path="/signin" element={!user ? <SigninPage /> : <Navigate to="/" />} />
+          <Route path="/settings" element={<Settings />} />
+          <Route path="/profile" element={<ProfilePage />} />
+        </Routes>
+      </div>
     </Fragment>
   );
 }

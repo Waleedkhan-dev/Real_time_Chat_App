@@ -7,4 +7,7 @@ export default defineConfig({
     tailwindcss(),
     daisyui
   ],
+  daisyui: {
+    themes: ["dark", "light", "cupcake", "retro"]
+  }
 })

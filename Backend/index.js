@@ -9,12 +9,11 @@ dotenv.config()
 const app = express()
 const port = process.env.PORT
 app.use(cors({
- origin: "https://localhost:8000/api",
+ origin: "http://localhost:5174",
  credentials: true
 }))
 app.use(express.json())
 app.use(cookiePareser())
-
 app.use("/api/auth", authRoute)
 app.use("/api/message", messageRoute)
 app.listen(port, () => {

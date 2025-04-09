@@ -9,6 +9,7 @@ import cloudinary from "../lib/cloudinary.js";
 
 const signUp = asyncHandler(async (req, res) => {
  const { fullName, password, email } = req.body
+ console.log("Request Body:", req.body);
  try {
   if (!fullName || !password || !email) {
    throw new ApiError(400, "All fields are very important");

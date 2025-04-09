@@ -10,7 +10,7 @@ const SignUpPage = () => {
   const [showPassword, setShowPassword] = useState(false)
   const [success, setSuccess] = useState("")
   const [formData, setFormData] = useState({
-    name: "",
+    fullName: "",
     email: "",
     password: "",
   })
@@ -18,7 +18,7 @@ const SignUpPage = () => {
 
   const ValidationFrom = async () => {
     const newError = {}
-    if (!formData.name.trim()) newError.name = "Name is required"
+    if (!formData.fullName.trim()) newError.fullName = "Name is required"
     if (!formData.email.trim()) newError.email = "Email is required"
     else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) newError.email = "Invalid email format"
     if (!formData.password.trim()) newError.password = "Password is required"
@@ -64,13 +64,13 @@ const SignUpPage = () => {
               <label className="block text-gray-600 text-sm mb-1">Name</label>
               <input
                 type="text"
-                name="name"
-                value={formData.name}
+                name="fullName"
+                value={formData.fullName || ""}
                 onChange={handleChange}
                 placeholder="Enter your name"
                 className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
               />
-              {errors.name && <p className="text-sm text-red-500">{errors.name}</p>}
+              {errors.fullName && <p className="text-sm text-red-500">{errors.fullName}</p>}
             </div>
 
             <div>
