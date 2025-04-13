@@ -24,10 +24,12 @@ const Navbar = () => {
        <p>Profile</p>
       </div>
      </Link>
-     <div className='flex items-center  justify-center gap-2 bg-gray-300 p-2 rounded cursor-pointer'>
-      <p><IoIosLogOut /></p>
-      <p>Logout</p>
-     </div>
+     <Link to={'/signin'}>
+      <div className='flex items-center  justify-center gap-2 bg-gray-300 p-2 rounded cursor-pointer'>
+       <p><IoIosLogOut /></p>
+       <p>Logout</p>
+      </div>
+     </Link>
     </div>
    </nav>
 

@@ -1,23 +1,20 @@
-export default function Sidebar({ users, onSelectUser, selectedUser }) {
- return (
-  <div className="w-1/4 bg-white border-r border-gray-300 flex flex-col">
-   <div className="p-4 font-bold text-xl border-b">Chats</div>
-   <div className="flex-1 overflow-y-auto">
-    {users.map((user, idx) => (
-     <div
-      key={idx}
-      onClick={() => onSelectUser(user)}
-      className={`flex justify-between items-center p-4 cursor-pointer border-b hover:bg-gray-100 ${selectedUser?.name === user.name ? "bg-gray-200" : ""
-       }`}
-     >
-      <span>{user.name}</span>
-      <span
-       className={`h-3 w-3 rounded-full ${user.online ? "bg-green-500" : "bg-red-400"
-        }`}
-      ></span>
-     </div>
-    ))}
-   </div>
-  </div>
- )
+import { Fragment } from "react"
+import React from "react"
+const Sidebar = () => {
+  const contact = ["waleed", 'saim', "Naveed", "saqlain", "Sherjeel"]
+  return (
+    <Fragment>
+      <div className="w-1/2 border-r bg-gray-300 border-gray-300" >
+        <div className="font-semibold text-gray-200"> Chat
+        </div>
+        {contact.map((val, index) => {
+          <div key={index}>
+            <p className="text-xl font-medium">{val}</p>
+            <p className="text-xl font-medium">Last message....</p>
+          </div>
+        })}
+      </div>
+    </Fragment>
+  )
 }
+export default Sidebar

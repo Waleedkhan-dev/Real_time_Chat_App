@@ -8,6 +8,8 @@ import Settings from './Pages/Settings';
 import ProfilePage from './Pages/ProfilePage';
 import { AuthContext } from './context/AuthContext';
 import React from 'react';
+import Sidebar from './components/ChatSection/Sidebar';
+import ChatWindow from './components/ChatSection/ChatWindow';
 
 const ProtectedRoute = ({ element }) => {
   const { user } = useContext(AuthContext);
@@ -23,8 +25,17 @@ function App() {
     <Fragment >
       <div data-theme="retro">
         <Navbar />
+        {user && <Sidebar />}
+        {user && <ChatWindow />}
+
         <Routes>
-          <Route path="/" element={<ProtectedRoute element={<HomePage />} />} />
+       <Route>
+            <Route path='/'
+            element={ user ? <Navigate to = "/home"   }
+            />
+
+           
+       </Route>
           <Route path="/signup" element={!user ? <SigUpPage /> : <Navigate to="/" />} />
           <Route path="/signin" element={!user ? <SigninPage /> : <Navigate to="/" />} />
           <Route path="/settings" element={<Settings />} />
