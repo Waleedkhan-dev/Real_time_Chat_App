@@ -12,7 +12,7 @@ const signUp = asyncHandler(async (req, res) => {
  console.log("Request Body:", req.body);
  try {
   if (!fullName || !password || !email) {
-   throw new ApiError(400, "All fields are very important");
+   throw new ApiError(400, "All fields are very important try again");
   }
 
   if (password.length < 6) {
