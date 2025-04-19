@@ -29,13 +29,13 @@ function App() {
         {user && <ChatWindow />}
 
         <Routes>
-       <Route>
+          <Route>
             <Route path='/'
-            element={ user ? <Navigate to = "/home"   }
+              element={user ? <Navigate to="/home" /> : <Navigate to="/signin" />}
             />
 
-           
-       </Route>
+
+          </Route>
           <Route path="/signup" element={!user ? <SigUpPage /> : <Navigate to="/" />} />
           <Route path="/signin" element={!user ? <SigninPage /> : <Navigate to="/" />} />
           <Route path="/settings" element={<Settings />} />
