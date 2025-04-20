@@ -23,7 +23,7 @@ function App() {
 
   return (
     <Fragment >
-      <div data-theme="retro">
+      <div >
         <Navbar />
         {user && <Sidebar />}
         {user && <ChatWindow />}
@@ -31,7 +31,7 @@ function App() {
         <Routes>
           <Route>
             <Route path='/'
-              element={user ? <Navigate to="/home" /> : <Navigate to="/signin" />}
+              element={user ? <HomePage /> : <Navigate to="/signin" />}
             />
 
 
