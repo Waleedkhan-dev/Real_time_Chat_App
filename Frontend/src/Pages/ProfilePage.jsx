@@ -36,12 +36,12 @@ const ProfilePage = () => {
                 <p className="text-gray-200">Click the camra icons to change your Profile</p>
               </div>
             </div>
-            <div className="flex flex-col justify-start  ">
+            <div className="flex flex-col gap-1 justify-start ">
               <label htmlFor="" className="text-white">Name</label>
               <input type="text" readOnly placeholder="waleed khan" className="outline-none border-gray-300 text-white p-2 border rounded" />
 
             </div>
-            <div className="flex flex-col justify-start">
+            <div className="flex flex-col gap-1 justify-start">
               <label htmlFor="" className="text-white">password</label>
               <input type="text" readOnly placeholder="....." className="outline-none border-gray-300 p-2 text-white border rounded" />
 
