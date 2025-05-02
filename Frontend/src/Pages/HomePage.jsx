@@ -1,7 +1,9 @@
-import React from "react"
+import React, { Fragment } from "react"
 const HomePage = () => {
  return (
-  <div>HomePage page </div>
+  <Fragment>
+   well come to chat application
+  </Fragment>
  )
 }
 export default HomePage
