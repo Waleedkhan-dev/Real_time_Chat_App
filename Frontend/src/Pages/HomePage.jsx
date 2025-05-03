@@ -2,7 +2,9 @@ import React, { Fragment } from "react"
 const HomePage = () => {
  return (
   <Fragment>
-   well come to chat application
+   <h1>
+    Hi This is chat application
+   </h1>
   </Fragment>
  )
 }
