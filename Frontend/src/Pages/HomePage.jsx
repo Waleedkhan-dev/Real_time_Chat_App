@@ -3,8 +3,11 @@ const HomePage = () => {
  return (
   <Fragment>
    <h1>
-    Hi This is chat application
+    chat
    </h1>
+   <p>Message</p>
+   <p>unreaad Message</p>
+   <p>status</p>
   </Fragment>
  )
 }
