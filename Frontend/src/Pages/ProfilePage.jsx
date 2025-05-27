@@ -4,6 +4,8 @@ import { IoCameraOutline } from "react-icons/io5";
 const ProfilePage = () => {
 
   const fileRef = useRef()
+  console.log(fileRef);
+
   const [img, setImg] = useState(null)
 
   return (
