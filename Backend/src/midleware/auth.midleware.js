@@ -26,7 +26,7 @@ const authMiddelware = (req, res, next) => {
  const token = authHeader & authHeader.split("")[1]
 
  if (!token) {
-  res.status(404).json({ anauthoried: "NO token provided" })
+  res.status(404).json({ anauthoried: "Please Provide the token" })
  }
  jwt.verify(token, process.env.SCERIT_TOKEN, (error, decoded) => {
   if (error) {
