@@ -53,7 +53,7 @@ const SignUpPage = () => {
 
   return (
     <Fragment>
-      <div className="min-h-screen flex items-center justify-center bg-yellow-300 p-4">
+      <div className="min-h-screen flex items-center justify-center bg-gray-600 p-4">
         <div className="bg-white shadow-lg rounded-2xl p-8 w-full max-w-md">
           <div className="flex flex-col items-center mb-6">
             <MdAccountCircle className="text-6xl text-blue-500 mb-2" />

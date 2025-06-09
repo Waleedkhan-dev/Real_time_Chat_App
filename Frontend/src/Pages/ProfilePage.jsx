@@ -52,7 +52,7 @@ const ProfilePage = () => {
               <h1 className="text-white font-medium">Account Information</h1>
               <div className="flex justify-between items-center">
                 <p className="text-gray-200">Member Since</p>
-                <p className="text-gray-200">02-05-2043</p>
+                <p className="text-gray-200">02-05-2025</p>
               </div>
               <hr className="text-gray-500 mt-5" />
               <div className="flex justify-between p-4 items-center">
