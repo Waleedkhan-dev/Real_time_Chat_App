@@ -60,6 +60,7 @@ const signin = asyncHandler(async (req, res) => {
 
   const isPassword = await bcrypt.compare(password, user.password)
   console.log("heloo");
+  console.log("ggg");
 
   if (!isPassword) {
    throw new ApiError(400, "Incorrect password")
