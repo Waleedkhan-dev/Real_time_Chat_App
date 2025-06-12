@@ -51,6 +51,7 @@ const sendMessage = asyncHandler(async (req, res) => {
   let imageUrl;
   if (image) {
    const uploadResponse = await cloudinary.uploader.upload(image);
+   console.log(uploadResponse)
    imageUrl = uploadResponse.secure_url
   }
 
