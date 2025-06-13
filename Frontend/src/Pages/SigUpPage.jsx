@@ -3,10 +3,11 @@ import { MdAccountCircle } from "react-icons/md";
 import { CiLock } from "react-icons/ci";
 import { MdEmail } from "react-icons/md";
 import { FaEye } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { signUp } from "../context/authApi";
 
 const SignUpPage = () => {
+  const navigate = useNavigate()
   const [showPassword, setShowPassword] = useState(false)
   const [success, setSuccess] = useState("")
   const [formData, setFormData] = useState({
@@ -38,8 +39,12 @@ const SignUpPage = () => {
     setErrors({});
     try {
       const result = await signUp(formData)
+      console.log("result", result);
+
       setSuccess(result.message)
-      setFormData({ name: "", email: "", password: "" })
+      setFormData({ fullName: "", email: "", password: "" })
+
+      navigate("/")
     } catch (error) {
 
     }
