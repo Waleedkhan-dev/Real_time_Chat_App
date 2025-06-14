@@ -5,7 +5,7 @@ import { ApiResponse } from "../utils/ApiResponse.js";
 import { generateToken } from "../utils/TokenGen.js";
 import { asyncHandler } from "../utils/asyncHandler.js";
 import cloudinary from "../lib/cloudinary.js";
-// import jwt from "jsonwebtoken"
+import jwt from "jsonwebtoken"
 
 const signUp = asyncHandler(async (req, res) => {
  const { fullName, password, email } = req.body
@@ -30,7 +30,7 @@ const signUp = asyncHandler(async (req, res) => {
    email,
    password: hashedPassword
   });
-
+  const token = jwt.sign({ id: newUser._id, }, process.env.JWT_SECRET, { expiresIn: "30d" })
   await newUser.save();
   if (!newUser) throw new ApiError(400, "Failed to create user");
 
@@ -42,7 +42,11 @@ const signUp = asyncHandler(async (req, res) => {
     fullName: newUser.fullName,
     email: newUser.email,
     profilePic: newUser.profilePic
-   })
+   },
+    {
+     token,
+     message: "Signup successful"
+    },)
   );
  } catch (error) {
   console.log("Error in signUp controllers:", error.message);

@@ -1,12 +1,14 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useContext, useState } from "react";
 import { MdAccountCircle } from "react-icons/md";
 import { CiLock } from "react-icons/ci";
 import { MdEmail } from "react-icons/md";
 import { FaEye } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import { signUp } from "../context/authApi";
+import { AuthContext } from "../context/AuthContext";
 
 const SignUpPage = () => {
+  const { setUser } = useContext(AuthContext)
   const navigate = useNavigate()
   const [showPassword, setShowPassword] = useState(false)
   const [success, setSuccess] = useState("")
@@ -34,18 +36,26 @@ const SignUpPage = () => {
       setErrors(validationErrors);
       return
     }
-    console.log(formData);
-    setFormData({ name: "", email: "", password: "" });
-    setErrors({});
+    console.log("Submitting signup data:", formData)
+    // setFormData({ name: "", email: "", password: "" });
+    // setErrors({});
     try {
       const result = await signUp(formData)
-      console.log("result", result);
+      console.log("Signup result", result);
+      if (result.user) {
+        setUser(result.user);
+        console.log("why it not navigayte");
+
+      }
 
       setSuccess(result.message)
       setFormData({ fullName: "", email: "", password: "" })
+      setTimeout(() => {
+        navigate("/")
+      }, 2000);
 
-      navigate("/")
     } catch (error) {
+      console.log("user not found");
 
     }
   };
