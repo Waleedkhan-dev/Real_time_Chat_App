@@ -23,7 +23,7 @@ const HomePage = () => {
     </div>
    </div>
 
-   {/* Chat Section */}
+
    <div className="w-2/3 flex flex-col">
     {/* Chat Header */}
     <div className="p-4 bg-gray-200 border-b">

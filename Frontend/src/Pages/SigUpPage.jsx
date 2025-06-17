@@ -17,6 +17,8 @@ const SignUpPage = () => {
     email: "",
     password: "",
   })
+  console.log(formData);
+
   const [errors, setErrors] = useState({})
 
   const ValidationFrom = async () => {
@@ -34,29 +36,24 @@ const SignUpPage = () => {
     const validationErrors = await ValidationFrom();
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
-      return
+      return;
     }
-    console.log("Submitting signup data:", formData)
-    // setFormData({ name: "", email: "", password: "" });
-    // setErrors({});
+
     try {
-      const result = await signUp(formData)
+      const result = await signUp(formData);
       console.log("Signup result", result);
-      if (result.user) {
-        setUser(result.user);
-        console.log("why it not navigayte");
 
+      if (result.meta?.token && result.data) {
+        localStorage.setItem("token", result.meta.token);
+        localStorage.setItem("user", JSON.stringify(result.data)); // ✅ User save karo
+        setUser(result.data);
+        setFormData({ fullName: "", email: "", password: "" });
+        navigate("/");
+        setSuccess(result.meta.message);
       }
-
-      setSuccess(result.message)
-      setFormData({ fullName: "", email: "", password: "" })
-      setTimeout(() => {
-        navigate("/")
-      }, 2000);
-
     } catch (error) {
-      console.log("user not found");
-
+      console.log("Signup error:", error);
+      setErrors({ general: "Signup failed. Please try again." });
     }
   };
 

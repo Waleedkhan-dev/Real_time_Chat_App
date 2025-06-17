@@ -4,18 +4,23 @@ import React from "react";
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(() => {
+    const savedUser = localStorage.getItem("user");
+    return savedUser ? JSON.parse(savedUser) : null;
+  });
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const checkAuth = async () => {
       const token = localStorage.getItem("token");
-      if (token) {
+      const savedUser = localStorage.getItem("user");
+
+      if (token && savedUser) {
         try {
-          const data = await getUserProfile(token);
-          setUser(data.user);
+          setUser(JSON.parse(savedUser));
         } catch {
           localStorage.removeItem("token");
+          localStorage.removeItem("user");
         }
       }
       setLoading(false);

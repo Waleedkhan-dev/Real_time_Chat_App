@@ -16,7 +16,7 @@ import SignUpPage from './Pages/SigUpPage';
 
 function App() {
   const { user, loading } = useContext(AuthContext);
-
+  console.log("Current user:", user)
   if (loading) return <h1>Loading...</h1>;
 
   return (
