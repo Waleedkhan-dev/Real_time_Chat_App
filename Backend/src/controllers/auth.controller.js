@@ -140,5 +140,14 @@ const authcheck = asyncHandler(async (req, res, next) => {
   }
 });
 
+const getuser = async (req, res) => {
+  try {
+    const user = await User.find({}, "fullName, email, fullName")
+    res.json(user)
 
-export { signin, signUp, logout, updateProfile, authcheck };
+  } catch (error) {
+    console.log();
+
+  }
+}
+export { signin, signUp, logout, updateProfile, authcheck, getuser };

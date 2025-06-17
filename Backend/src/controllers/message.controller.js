@@ -14,6 +14,8 @@ const getuserFromSidebar = asyncHandler(async (req, res) => {
   const logedInUserId = req.user._id
 
   const filterUsers = await User.find({ _id: { $ne: logedInUserId } }).select("-password")
+  console.log(filterUsers);
+
 
   res.status(200).json(new ApiResponse(200, "message send successfuly"))
  } catch (error) {

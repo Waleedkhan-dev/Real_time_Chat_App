@@ -1,25 +1,48 @@
+import axios from "axios";
 import React from "react";
+import { useEffect } from "react";
+import { useState } from "react";
 
 const HomePage = () => {
+
+ const [user, setUser] = useState([])
+ const userapi = "http://localhost:8000/api/auth/user"
+ const getUserName = async () => {
+  try {
+   const res = await axios.get(userapi)
+   setUser(res.data)
+  } catch (error) {
+
+  }
+ }
+ useEffect(() => {
+  getUserName()
+ }, [])
  return (
   <div className="h-screen w-full flex">
    {/* Sidebar */}
+
    <div className="w-1/3 bg-gray-100 border-r p-4">
     <h2 className="text-xl font-bold mb-4">Chats</h2>
+
     <input
      type="text"
      placeholder="Search..."
      className="w-full p-2 mb-4 border rounded"
     />
     <div className="space-y-4">
-     <div className="p-2 bg-white shadow rounded cursor-pointer hover:bg-gray-50">
-      <h3 className="font-medium">John Doe</h3>
-      <p className="text-sm text-gray-500">Last message preview...</p>
-     </div>
-     <div className="p-2 bg-white shadow rounded cursor-pointer hover:bg-gray-50">
-      <h3 className="font-medium">Jane Smith</h3>
-      <p className="text-sm text-gray-500">Another message...</p>
-     </div>
+     {
+      user.map((value, index) => {
+       return <div key={index}>
+
+        <div className="p-2 bg-white shadow rounded cursor-pointer hover:bg-gray-50">
+         <h3 className="font-medium">{value.fullName}</h3>
+         <p className="text-sm text-gray-500">Another message...</p>
+        </div>
+       </div>
+      })
+     }
+
     </div>
    </div>
 
