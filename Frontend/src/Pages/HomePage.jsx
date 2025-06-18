@@ -1,11 +1,12 @@
 import axios from "axios";
-import React from "react";
+import React, { useRef } from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 import { IoMdSend } from "react-icons/io";
 import { MdKeyboardVoice } from "react-icons/md";
 import { PiSticker } from "react-icons/pi";
-
+import { IoMdLink } from "react-icons/io";
+import { CiCamera } from "react-icons/ci";
 
 
 const HomePage = () => {
@@ -79,8 +80,8 @@ const HomePage = () => {
      {message.map((msg, index) => {
       return <div key={index}
        className={`p-2 max-w-xs ${msg.from === "me"
-        ? "self-end bg-blue-100"
-        : "self-start bg-green-100"
+        ? "self-start bg-blue-100"
+        : "self-end bg-green-100"
         }`}
       >
        {msg.text}
@@ -103,7 +104,10 @@ const HomePage = () => {
         placeholder="Message"
         className="flex-1 p-2 border-none bg-white rounded outline-none "
        />
-
+       <div className="flex gap-5">
+        <IoMdLink className="hover:cursor-pointer text-blue-400" />
+        <CiCamera className="hover:cursor-pointer text-blue-400" />
+       </div>
       </div>
       <button onClick={handleSend} className="bg-green-500 rounded-full text-white p-3 
       ">
