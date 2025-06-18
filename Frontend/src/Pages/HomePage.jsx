@@ -2,9 +2,20 @@ import axios from "axios";
 import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
+import { IoMdSend } from "react-icons/io";
+import { MdKeyboardVoice } from "react-icons/md";
+import { PiSticker } from "react-icons/pi";
+
+
 
 const HomePage = () => {
 
+ const [newMesage, setNewMessage] = useState("")
+
+ const [message, setMessage] = useState([
+  { text: "hi", from: "other" },
+  { text: "hello", from: "me" }
+ ])
  const [user, setUser] = useState([])
  const userapi = "http://localhost:8000/api/auth/user"
  const getUserName = async () => {
@@ -18,8 +29,20 @@ const HomePage = () => {
  useEffect(() => {
   getUserName()
  }, [])
+ const handleSend = () => {
+  if (newMesage.trim() === "") return
+
+  setMessage([...message, { text: newMesage, from: "me" }])
+
+  setNewMessage("")
+ }
+ const handleKeyDown = (e) => {
+  if (e.key === "Enter") {
+   handleSend()
+  }
+ }
  return (
-  <div className="h-screen w-full flex">
+  <div className=" w-full h-[60vh] overscroll-auto  flex">
    {/* Sidebar */}
 
    <div className="w-1/3 bg-gray-100 border-r p-4">
@@ -30,7 +53,7 @@ const HomePage = () => {
      placeholder="Search..."
      className="w-full p-2 mb-4 border rounded"
     />
-    <div className="space-y-4">
+    <div className="space-y-4 bg-black h-[50vh] items-center overflow-auto">
      {
       user.map((value, index) => {
        return <div key={index}>
@@ -49,27 +72,43 @@ const HomePage = () => {
 
    <div className="w-2/3 flex flex-col">
     {/* Chat Header */}
-    <div className="p-4 bg-gray-200 border-b">
-     <h2 className="text-lg font-semibold">John Doe</h2>
-     <p className="text-sm text-gray-600">Online</p>
-    </div>
+
 
     {/* Messages */}
     <div className="flex-1 p-4 overflow-y-auto space-y-2 bg-white">
-     <div className="self-start bg-gray-100 p-2 rounded max-w-xs">Hi!</div>
-     <div className="self-end bg-blue-100 p-2 rounded max-w-xs">Hello!</div>
+     {message.map((msg, index) => {
+      return <div key={index}
+       className={`p-2 max-w-xs ${msg.from === "me"
+        ? "self-end bg-blue-100"
+        : "self-start bg-green-100"
+        }`}
+      >
+       {msg.text}
+      </div>
+     })}
     </div>
 
     {/* Message Input */}
-    <div className="p-4 border-t bg-gray-100">
-     <div className="flex">
-      <input
-       type="text"
-       placeholder="Type a message..."
-       className="flex-1 p-2 border rounded-l"
-      />
-      <button className="bg-blue-500 text-white px-4 rounded-r">
-       Send
+    <div className="p-4 border-t gap-3 bg-gray-100">
+     <div className="flex gap-1.5">
+      <div className="bg-white w-[80vw] px-3 rounded flex items-center">
+       <div>
+        <PiSticker className="hover:cursor-pointer" />
+       </div>
+       <input
+        type="text"
+        onChange={(e) => setNewMessage(e.target.value)}
+        value={newMesage}
+        onKeyDown={handleKeyDown}
+        placeholder="Message"
+        className="flex-1 p-2 border-none bg-white rounded outline-none "
+       />
+
+      </div>
+      <button onClick={handleSend} className="bg-green-500 rounded-full text-white p-3 
+      ">
+       {newMesage.trim() ? <IoMdSend /> : <MdKeyboardVoice />}
+
       </button>
      </div>
     </div>
