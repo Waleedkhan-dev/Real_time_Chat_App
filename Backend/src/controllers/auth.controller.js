@@ -43,7 +43,7 @@ const signUp = asyncHandler(async (req, res) => {
           fullName: newUser.fullName,
           email: newUser.email,
         },
-        // profilePic: newUser.profilePic
+
 
         meta: {
           token,
