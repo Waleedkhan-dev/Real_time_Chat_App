@@ -47,7 +47,7 @@ const sendMessage = asyncHandler(async (req, res) => {
  try {
 
   const { text, image } = req.body
-  const { id: receiverId } = req.params
+  const reciverId = req.params.id
   const senderId = req.user._id
 
   let imageUrl;
@@ -59,7 +59,7 @@ const sendMessage = asyncHandler(async (req, res) => {
 
   const newMessage = new Message({
    senderId,
-   receiverId,
+   reciverId,
    text,
    image: imageUrl
   })
