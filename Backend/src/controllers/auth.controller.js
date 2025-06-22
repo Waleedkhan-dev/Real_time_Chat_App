@@ -64,10 +64,7 @@ const signin = asyncHandler(async (req, res) => {
     if (!user) {
       throw new ApiError(400, "Email not found give the correct email")
     }
-
     const isPassword = await bcrypt.compare(password, user.password)
-    console.log("heloo");
-    console.log("ggg");
 
     if (!isPassword) {
       throw new ApiError(400, "Incorrect password")
@@ -132,22 +129,18 @@ const authcheck = asyncHandler(async (req, res, next) => {
     if (!req.user) {
       return next(new ApiError(401, "Unauthorized - No user found"));
     }
-
     res.status(200).json(new ApiResponse(200, req.user, "User authenticated successfully"));
   } catch (error) {
     console.error("Error in checkauth controller:", error.message);
     next(new ApiError(500, "Internal server error"));
   }
 });
-
 const getuser = async (req, res) => {
   try {
     const user = await User.find({}, "fullName, email, fullName")
     res.json(user)
-
   } catch (error) {
     console.log();
-
   }
 }
 export { signin, signUp, logout, updateProfile, authcheck, getuser };
