@@ -10,7 +10,7 @@ const MainDashbord = () => {
     <div className="w-[22%] bg-gray-900">
      <Sidebar />
     </div>
-    <div className="w-[76%]">
+    <div className="w-[78%]">
      <Navbar />
     </div>
    </div>

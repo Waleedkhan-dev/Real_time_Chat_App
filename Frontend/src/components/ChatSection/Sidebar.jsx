@@ -1,35 +1,60 @@
 import { Fragment } from "react"
 import React from "react"
 import { HiOutlineStatusOnline } from "react-icons/hi";
-import { FaPhoneAlt } from "react-icons/fa";
+import { FaLock, FaLockOpen, FaPhoneAlt, FaRegStar } from "react-icons/fa";
 import { CiMenuBurger } from "react-icons/ci";
 import { BiLogoMeta } from "react-icons/bi";
-
-
+import { PiArchiveDuotone } from "react-icons/pi";
+import { CgProfile } from "react-icons/cg";
 import { HiOutlineChatBubbleBottomCenterText } from "react-icons/hi2";
+import { IoSettingsOutline } from "react-icons/io5";
 
 const Sidebar = () => {
   const contact = ["waleed", 'saim', "Naveed", "saqlain", "Sherjeel"]
   return (
     <Fragment>
-      <div className="flex bg-gray-300 w-[15%] h-[100vh] p-3">
-        <div className="flex flex-col h-[15vh] items-center   justify-start  gap-3">
-          <div>
-            <CiMenuBurger />
-          </div>
-          <div>
-            <HiOutlineChatBubbleBottomCenterText />
-          </div>
-          <div>
-            <FaPhoneAlt />
+      <div className="flex bg-gray-300 w-[15%] h-[100vh] p-2">
+        <div className=" flex flex-col  justify-center gap-80 h-full items-center">
+          <div className="flex flex-col h-[15vh] items-center   justify-start  gap-3">
+            <div>
+              <CiMenuBurger />
+            </div>
+            <div>
+              <HiOutlineChatBubbleBottomCenterText />
+            </div>
+            <div>
+              <FaPhoneAlt />
 
-          </div>
-          <div>
-            <HiOutlineStatusOnline />
+            </div>
+            <div>
+              <HiOutlineStatusOnline />
 
+            </div>
+            <div>
+              <BiLogoMeta />
+            </div>
+            <div>
+              <CgProfile />
+            </div>
           </div>
-          <div>
-            <BiLogoMeta />
+          <div className="flex flex-col h-[15vh] items-center   justify-start  gap-3">
+            <div>
+              <FaLock />
+            </div>
+            <div>
+              <FaRegStar />
+            </div>
+            <div>
+              <PiArchiveDuotone />
+
+            </div>
+            <div>
+              <IoSettingsOutline />
+
+            </div>
+            <div>
+              <BiLogoMeta />
+            </div>
           </div>
         </div>
         <div className="w-1/2 border-r bg-gray-300 border-gray-300" >
