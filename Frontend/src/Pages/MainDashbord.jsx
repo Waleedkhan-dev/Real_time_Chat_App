@@ -15,7 +15,7 @@ const MainDashbord = () => {
     <div className="w-[5%] bg-gray-400">
      <SideNave />
     </div>
-    <div className="w-[20%] p-2 bg-gray-900">
+    <div className="w-[20%]  overflow-auto p-2 bg-gray-900">
      <Sidebar />
     </div>
     <div className="w-[70%]">

@@ -30,7 +30,7 @@ const SideNave = () => {
       <div className="flex flex-col h-[15vh] items-center   justify-start  gap-3">
        {sidbarSettingElement.map((value, index) => {
         return <div key={index}>
-         <p>{value}</p>
+         <p className="text-white text-[16px]">{value}</p>
         </div>
        })}
       </div>

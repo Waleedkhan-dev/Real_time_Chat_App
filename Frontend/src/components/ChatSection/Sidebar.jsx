@@ -1,17 +1,52 @@
+import axios from "axios"
+import { useEffect, useState } from "react"
 import { Fragment } from "react"
 import React from "react"
 
 
 const Sidebar = () => {
-  const contact = ["waleed", 'saim', "Naveed", "saqlain", "Sherjeel"]
+  const getUserData = "http://localhost:8000/api/auth/user"
+  const [users, setUsers] = useState([])
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const res = await axios.get(getUserData)
+        const data = res.data
+        setUsers(data)
+
+      } catch (error) {
+        console.log("user data is not get fromthe api");
+
+      }
+    }
+    getData()
+  }, [])
+
 
   return (
     <Fragment>
-
-      <div className="rounded bg-gray-200 p-2">
+      <div className="rounded  bg-gray-200 p-2">
         <input type="search" placeholder="Serach..." className="outline-none " />
       </div>
+      <div className="">
 
+        <div className="">
+          {
+            users.length > 0 ? (
+              users.map((val, index) => {
+                return <div key={index} className=" p-2 border-[1px] cursor-pointer">
+                  <p className="text-slate-100 font-sans">{val.fullName}</p>
+                </div>
+              })
+
+            ) : (
+              <div>
+                User Not Found
+              </div>
+            )
+          }
+        </div>
+      </div>
     </Fragment>
   )
 }
