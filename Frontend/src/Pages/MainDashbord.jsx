@@ -3,6 +3,7 @@ import React from "react"
 import Sidebar from "../components/ChatSection/Sidebar"
 import Navbar from "../components/Navbar"
 import SideNave from "./sideNave"
+import ChatWindow from "../components/ChatSection/ChatWindow"
 
 
 
@@ -17,9 +18,11 @@ const MainDashbord = () => {
     </div>
     <div className="w-[20%]  overflow-auto p-2 bg-gray-900">
      <Sidebar />
+
     </div>
-    <div className="w-[75%]">
+    <div className="w-[75%] ">
      <Navbar />
+     <ChatWindow />
     </div>
    </div>
   </Fragment>
