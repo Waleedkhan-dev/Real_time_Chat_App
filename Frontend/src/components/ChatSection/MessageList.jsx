@@ -1,25 +1,21 @@
-import React from "react";
-export default function MessageList() {
-  const messages = [
-    { text: "Hi there!", sent: true },
-    { text: "Hello!", sent: false },
-    { text: "What's up?", sent: true },
-    { text: "All good!", sent: false },
-  ];
+import React, { Fragment } from "react"
+import { useSelector } from "react-redux"
 
+const MessageList = () => {
+  const messages = useSelector((state) => state.message.messages)
+  const selectedUser = useSelector((state) => state.user.selectedUser)
+
+  if (!selectedUser) return <p>Slect a user for chatting</p>
   return (
-    <div className="flex-1 overflow-y-auto px-4 py-2 space-y-2 bg-gray-50">
-      {messages.map((msg, idx) => (
-        <div
-          key={idx}
-          className={`max-w-xs px-4 py-2 rounded-lg ${msg.sent
-            ? "bg-green-200 self-end ml-auto text-right"
-            : "bg-white border self-start mr-auto text-left"
-            }`}
-        >
-          {msg.text}
-        </div>
-      ))}
-    </div>
-  );
+    <Fragment>
+      <div>
+        {messages.map((value, index) => {
+          return <div key={index}>
+            <p>{value.text}</p>
+          </div>
+        })}
+      </div>
+    </Fragment>
+  )
 }
+export default MessageList

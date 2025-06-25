@@ -2,11 +2,14 @@ import axios from "axios"
 import { useEffect, useState } from "react"
 import { Fragment } from "react"
 import React from "react"
+import { useDispatch } from "react-redux"
+import { setSelectedUser } from "../../redux/userSlice"
 
 
 const Sidebar = () => {
-  const getUserData = "http://localhost:8000/api/auth/user"
+  const dispatch = useDispatch()
   const [users, setUsers] = useState([])
+  const getUserData = "http://localhost:8000/api/auth/user"
   useEffect(() => {
     const getData = async () => {
       try {
@@ -34,7 +37,9 @@ const Sidebar = () => {
           {
             users.length > 0 ? (
               users.map((val, index) => {
-                return <div key={index} className=" p-2 border-[1px] cursor-pointer">
+                return <div
+                  onClick={() => dispatch(setSelectedUser(val))}
+                  key={index} className=" p-2 border-[1px] cursor-pointer">
                   <p className="text-slate-100 font-sans">{val.fullName}</p>
                 </div>
               })
