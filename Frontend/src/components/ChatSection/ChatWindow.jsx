@@ -9,7 +9,7 @@ export default function ChatWindow() {
   isOnline: false,
  };
  return (
-  <div className="flex flex-col justify-between w-full min-h-screen bg-white border-l">
+  <div className="flex flex-col justify-between w-full h-[90vh] bg-white border-l">
    {/* <ChatHeader user={user} /> */}
    <MessageList />
    <SendMessage />
