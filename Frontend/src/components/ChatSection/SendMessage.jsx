@@ -2,14 +2,15 @@ import React, { Fragment, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { IoMdSend } from "react-icons/io";
 import { MdKeyboardVoice } from "react-icons/md";
+import { sendmessage } from "../../redux/messageSlice";
 
 const SendMessage = () => {
  const dispatch = useDispatch()
  const selectedUser = useSelector((state) => state.user.selectedUser)
  const [text, setText] = useState("")
  const handleSend = () => {
-  if (!text.trim() || !selectedUser) return
-  dispatch({ text, to: useSelector._id })
+  if (!text.trim() || !selectedUser) return;
+  dispatch(sendmessage({ to: selectedUser._id, text }))
   setText('')
  }
 

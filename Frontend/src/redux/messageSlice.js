@@ -1,7 +1,7 @@
 import { configureStore, createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
- messages: []
+ messages: {}
 }
 
 export const messageSlice = createSlice({
@@ -11,11 +11,19 @@ export const messageSlice = createSlice({
   setMessage: ((state, action) => {
    state.messages = (action.payload)
   }),
-  addMessage: ((state, action) => {
-   state.messages.push(action.payload)
-  })
+  sendmessage: (state, action) => {
+   const { to, text } = action.payload
+   if (!state.messages[to]) {
+    state.messages[to] = []
+   }
+   state.messages[to].push({
+    text,
+    from: "me",
+    timeStamp: Date.now()
+   })
+  }
  }
 })
 
-export const { setMessage, addMessage } = messageSlice.actions
+export const { setMessage, sendmessage } = messageSlice.actions
 export default messageSlice.reducer
