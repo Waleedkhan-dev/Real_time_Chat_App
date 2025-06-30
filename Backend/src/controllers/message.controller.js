@@ -6,29 +6,23 @@ import ApiError from "../utils/ApiError.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
 // import { generateToken } from "../utils/TokenGen";
 import { asyncHandler } from "../utils/asyncHandler.js";
-
-
-
 const getuserFromSidebar = asyncHandler(async (req, res) => {
  try {
   const logedInUserId = req.user._id
 
   const filterUsers = await User.find({ _id: { $ne: logedInUserId } }).select("-password")
-  console.log(filterUsers);
 
-
-  res.status(200).json(new ApiResponse(200, "message send successfuly"))
+  res.status(200).json(new ApiResponse(200, filterUsers, "message send successfuly"))
  } catch (error) {
-  console.log("error in getteing user ", error.message);
-  throw new ApiError(500, "internal server error ")
 
+  throw new ApiError(500, "internal server error ")
  }
 })
 const getmessage = asyncHandler(async (req, res) => {
  try {
   const { id: userTochat } = req.params
   const myId = req.user._id;
-  const Message = await Message.find({
+  const message = await Message.find({
    $or: [
     {
      senderId: myId, receicerId: userTochat
@@ -37,8 +31,8 @@ const getmessage = asyncHandler(async (req, res) => {
      senderId: userTochat, receiverId: myId
     }
    ]
-  })
-  res.status(200).json(new ApiResponse("user Send message send successfully"))
+  }).sort({ creatAt: 1 })
+  res.status(200).json(new ApiResponse(message, "user Send message send successfully"))
  } catch (error) {
 
  }
