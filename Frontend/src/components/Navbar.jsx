@@ -1,9 +1,5 @@
 import React, { Fragment } from 'react'
 import { CiChat1 } from "react-icons/ci";
-// import { IoSettings } from "react-icons/io5";
-// import { CgProfile } from "react-icons/cg";
-// import { IoIosLogOut } from "react-icons/io";
-// import { Link } from "react-router-dom"
 import { FaVideo } from "react-icons/fa6";
 import { IoCall } from "react-icons/io5";
 

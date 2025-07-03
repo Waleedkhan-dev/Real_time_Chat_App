@@ -43,7 +43,6 @@ const Sidebar = () => {
                   <p className="text-slate-100 font-sans">{val.fullName}</p>
                 </div>
               })
-
             ) : (
               <div>
                 User Not Found
