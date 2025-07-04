@@ -6,7 +6,6 @@ import { generateToken } from "../utils/TokenGen.js";
 import { asyncHandler } from "../utils/asyncHandler.js";
 import cloudinary from "../lib/cloudinary.js";
 import jwt from "jsonwebtoken"
-
 const signUp = asyncHandler(async (req, res) => {
   const { fullName, password, email } = req.body
   console.log("Request Body:", req.body);
@@ -78,7 +77,7 @@ const signin = asyncHandler(async (req, res) => {
       profilePic: user.profilePic
     }))
   } catch (error) {
-    // console.log("Error in signin controller:", error.message);
+
     throw new ApiError(500, "Internal server error");
   }
 });
