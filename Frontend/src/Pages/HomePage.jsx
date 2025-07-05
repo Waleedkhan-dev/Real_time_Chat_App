@@ -11,7 +11,7 @@ import { CiCamera } from "react-icons/ci";
 
 const HomePage = () => {
 
-  const [newMesage, setNewMessage] = useState("")
+  const [newMessage, setNewMessage] = useState("")
 
   const [message, setMessage] = useState([
     { text: "hi", from: "other" },
@@ -24,26 +24,24 @@ const HomePage = () => {
       const res = await axios.get(userapi)
       setUser(res.data)
     } catch (error) {
-
     }
   }
   useEffect(() => {
     getUserName()
   }, [])
   const handleSend = () => {
-    if (newMesage.trim() === "") return
-
-    setMessage([...message, { text: newMesage, from: "me" }])
-
+    if (newMessage.trim() === "") return;
+    setMessage([...message, { text: newMessage, from: "me" }])
     setNewMessage("")
   }
   const handleKeyDown = (e) => {
+
     if (e.key === "Enter") {
+      e.preventDefault()
       handleSend()
     }
   }
   const token = localStorage.getItem("token"); // token frontend localStorage me hona chahiye
-
   const messageData = {
     text: "Hello there!",
     image: null,
@@ -84,13 +82,7 @@ const HomePage = () => {
 
         </div>
       </div>
-
-
       <div className="w-2/3 flex flex-col">
-        {/* Chat Header */}
-
-
-        {/* Messages */}
         <div className="flex-1 p-4 overflow-y-auto space-y-2 bg-white">
           {message.map((msg, index) => {
             return <div key={index}
@@ -103,8 +95,6 @@ const HomePage = () => {
             </div>
           })}
         </div>
-
-        {/* Message Input */}
         <div className="p-4 border-t gap-3 bg-gray-100">
           <div className="flex gap-1.5">
             <div className="bg-white w-[80vw] px-3 rounded flex items-center">
@@ -114,7 +104,7 @@ const HomePage = () => {
               <input
                 type="text"
                 onChange={(e) => setNewMessage(e.target.value)}
-                value={newMesage}
+                value={newMessage}
                 onKeyDown={handleKeyDown}
                 placeholder="Message"
                 className="flex-1 p-2 border-none bg-white rounded outline-none "
@@ -126,7 +116,7 @@ const HomePage = () => {
             </div>
             <button onClick={handleSend} className="bg-green-500 rounded-full text-white p-3 
       ">
-              {newMesage.trim() ? <IoMdSend /> : <MdKeyboardVoice />}
+              {newMessage.trim() ? <IoMdSend /> : <MdKeyboardVoice />}
 
             </button>
           </div>

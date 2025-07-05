@@ -50,7 +50,7 @@ function App() {
         />
         <Route
           path="/profile"
-          element={user ? <Pro filePage /> : <Navigate to="/signin" />}
+          element={user ? <ProfilePage /> : <Navigate to="/signin" />}
         />
       </Routes>
     </Fragment>
