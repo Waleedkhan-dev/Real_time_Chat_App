@@ -8,10 +8,10 @@ const MessageList = () => {
   const userMessages = messages[selectedUser._id] || []
   return (
     <Fragment>
-      <div>
+      <div className="flex justify-end">
         {userMessages.map((value, index) => {
           return <div key={index}>
-            <div className="flex justify-center p-2 rounded items-center bg-green-500  mx-w-[70%] w-fit gap-10 ">
+            <div className="flex justify-center left-0 p-2 rounded items-center bg-green-500  mx-w-[70%] w-fit gap-10 ">
               <p className="text-gray-900">{value.text}</p>
               <p className="text-[10px] text-gray-800">{new Date(value.timeStamp).toLocaleTimeString([], {
                 // minute: "2-digit",

@@ -2,10 +2,16 @@ import express from "express"
 import authRoute from "./src/routes/auth.routes.js"
 import messageRoute from "./src/routes/message.routes.js"
 import dotenv from "dotenv"
+dotenv.config()
 import connectDb from "./src/lib/db.js"
 import cookiePareser from "cookie-parser"
 import cors from "cors"
-dotenv.config()
+import jwt from "jsonwebtoken"
+const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY...U2U5g4.dUi6t-rRRE3iXvYJcFg "
+
+const decoded = jwt.decode(token);
+console.log(decoded);
+
 const app = express()
 const port = process.env.PORT
 app.use(cors({

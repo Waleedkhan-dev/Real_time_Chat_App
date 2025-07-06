@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux"
 import { IoMdSend } from "react-icons/io";
 import { MdKeyboardVoice } from "react-icons/md";
 import { sendmessage } from "../../redux/messageSlice";
-
 const SendMessage = () => {
  const dispatch = useDispatch()
  const selectedUser = useSelector((state) => state.user.selectedUser)
@@ -14,6 +13,11 @@ const SendMessage = () => {
   setText('')
  }
 
+ const handleDown = (e) => {
+  if (e.key === 'Enter') {
+   handleSend()
+  }
+ }
  return (
   <Fragment>
    <div className="flex justify-center items-center">
@@ -22,11 +26,12 @@ const SendMessage = () => {
      <input type="text"
       value={text}
       onChange={(e) => setText(e.target.value)}
+      onKeyDown={handleDown}
+
       placeholder="message..."
       className="w-[80%] bg-gray-50 outline-none border-[1px] border-gray-500 p-2 rounded"
-
      />
-     <button className="p-3  rounded-full bg-green-500 cursor-pointer border-[1px] border-gray-50" onClick={handleSend}>
+     <button className="p-3  rounded-full bg-green-500 text-gray-200 cursor-pointer border-[1px] border-gray-50" onClick={handleSend}>
 
       {text.trim() ? <IoMdSend /> : <MdKeyboardVoice />}
      </button>

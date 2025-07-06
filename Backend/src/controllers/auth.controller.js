@@ -29,7 +29,12 @@ const signUp = asyncHandler(async (req, res) => {
       email,
       password: hashedPassword
     });
-    const token = jwt.sign({ id: newUser._id, }, process.env.JWT_SECRET, { expiresIn: "30d" })
+    const token = generateToken(user._id);
+
+    res.status(200).json({
+      success: true,
+      token, // 👈 send token to frontend to store in localStorage
+    });
     await newUser.save();
     if (!newUser) throw new ApiError(400, "Failed to create user");
 

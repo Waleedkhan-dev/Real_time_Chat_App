@@ -52,20 +52,16 @@ const sendMessage = asyncHandler(async (req, res) => {
   }
 
   const newMessage = new Message({
-   senderId,
-   reciverId,
-   text,
+   sender: senderId,
+   reveiver: reciverId,
+   content: text,
    image: imageUrl
   })
   await newMessage.save()
-
   res.status(200).json(new ApiResponse(200, "new user send message "))
  } catch (error) {
-
   console.log("give an erro while sending the message");
-
   res.status(500).json(new ApiError(500, "some eror occer while sending the message to ther efrind"))
-
  }
 })
 export { getuserFromSidebar, getmessage, sendMessage }
