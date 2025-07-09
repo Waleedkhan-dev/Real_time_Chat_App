@@ -22,11 +22,15 @@ function App() {
 
   return (
     <Fragment>
-      <div className="flex">
+      {
+        user && (
+          <div className="flex">
 
-        <MainDashbord />
+            <MainDashbord />
 
-      </div>
+          </div>
+        )
+      }
 
       <Routes>
         {/* <Route

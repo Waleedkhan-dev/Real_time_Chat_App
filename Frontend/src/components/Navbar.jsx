@@ -1,13 +1,35 @@
+import axios from 'axios';
 import React, { Fragment } from 'react'
+import { useState } from 'react';
 import { CiChat1 } from "react-icons/ci";
 import { FaVideo } from "react-icons/fa6";
 import { IoCall } from "react-icons/io5";
-
-
 import { useSelector } from "react-redux"
+import { useNavigate } from 'react-router-dom';
+
 
 const Navbar = () => {
+
  const selectedUser = useSelector((state) => state.user.selectedUser)
+ const LogOutURL = `http://localhost:8000/api/auth/logout`
+ const userNavigate = useNavigate()
+ const [deletUser, setDeleteUser] = useState('')
+
+ const logOutUser = async () => {
+  console.log("user click on del butn");
+
+  try {
+   const res = await axios.delete(LogOutURL, {
+    withCredentials: true
+   })
+   setDeleteUser(res.data)
+   userNavigate('/sigin')
+  } catch (error) {
+   console.log("logout api is not fetch");
+
+  }
+ }
+
  return (
   <Fragment>
    <nav className='flex items-center bg-gray-200 h-11 '>
@@ -36,6 +58,7 @@ const Navbar = () => {
       </div>
      </Link>
     </div> */}
+    <button onClick={logOutUser} className='cursor-pointer bg-red-600 rounded p-2 '>Logout</button>
    </nav>
 
   </Fragment>

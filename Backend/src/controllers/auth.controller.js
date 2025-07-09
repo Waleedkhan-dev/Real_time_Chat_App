@@ -3,7 +3,7 @@ import bcrypt from "bcryptjs";
 import ApiError from "../utils/ApiError.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
 import { generateToken } from "../utils/TokenGen.js";
-import { asyncHandler } from "../utils/asyncHandler.js";
+import { asyncHandler } from "../utils/asyncHandler.js"
 import cloudinary from "../lib/cloudinary.js";
 import jwt from "jsonwebtoken"
 const signUp = asyncHandler(async (req, res) => {
@@ -33,7 +33,7 @@ const signUp = asyncHandler(async (req, res) => {
 
     res.status(200).json({
       success: true,
-      token, // 👈 send token to frontend to store in localStorage
+      token,
     });
     await newUser.save();
     if (!newUser) throw new ApiError(400, "Failed to create user");
@@ -47,8 +47,6 @@ const signUp = asyncHandler(async (req, res) => {
           fullName: newUser.fullName,
           email: newUser.email,
         },
-
-
         meta: {
           token,
           message: "Signup successful"
@@ -89,13 +87,16 @@ const signin = asyncHandler(async (req, res) => {
 
 const logout = asyncHandler(async (req, res) => {
   try {
-    res.cookie("jwt", "", { maxAge: 0 });
-    res.status(200).json(new ApiResponse(200, "Logout successfully"));
+    res.clearcookie("jwt", {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: true
+    })
+    res.status(200).json(new ApiResponse(200, "logout successfully"))
   } catch (error) {
-
-    throw new ApiError(500, "Internal server error");
+    throw new ApiError(500, "internal server ")
   }
-});
+})
 
 
 const updateProfile = asyncHandler(async (req, res) => {
