@@ -13,7 +13,6 @@ const signUp = asyncHandler(async (req, res) => {
     if (!fullName || !password || !email) {
       throw new ApiError(400, "All fields are very important ");
     }
-
     if (password.length < 6) {
       throw new ApiError(400, "Password must be at least 6 characters");
     }
