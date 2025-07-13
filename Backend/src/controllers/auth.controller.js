@@ -86,10 +86,16 @@ const signin = asyncHandler(async (req, res) => {
 
 const logout = asyncHandler(async (req, res) => {
   try {
-    res.clearcookie("jwt", {
+    res.clearCookie("token", {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
-      sameSite: true
+      sameSite: "strict"
+    })
+    res.clearCookie("refreshToken", {
+      httpOnly: true,
+      sameSite: "strict",
+      secure: process.env.NODE_DEV === "development",
+
     })
     res.status(200).json(new ApiResponse(200, "logout successfully"))
   } catch (error) {

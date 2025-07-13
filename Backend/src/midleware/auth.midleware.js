@@ -14,10 +14,6 @@ const authMiddleware = (req, res, next) => {
   next();
  });
 };
-
-
-
-
 export { authMiddleware }
 // import jwt from "jsonwebtoken"
 
