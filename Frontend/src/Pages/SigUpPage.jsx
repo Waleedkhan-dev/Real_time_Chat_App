@@ -1,4 +1,4 @@
-import React, { Fragment, useContext, useState } from "react";
+import React, { Fragment, useCallback, useContext, useState } from "react";
 import { MdAccountCircle } from "react-icons/md";
 import { CiLock } from "react-icons/ci";
 import { MdEmail } from "react-icons/md";
@@ -6,6 +6,7 @@ import { FaEye } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import { signUp } from "../context/authApi";
 import { AuthContext } from "../context/AuthContext";
+import { debounce } from "../util/debounce";
 
 const SignUpPage = () => {
   const { setUser } = useContext(AuthContext)
@@ -30,7 +31,12 @@ const SignUpPage = () => {
     else if (formData.password.length < 6) newError.password = "Password must be at least 6 characters"
     return newError
   }
-
+  const handelDebounce = useCallback(
+    debounce((name, value) => {
+      setFormData((prev) => ({ ...prev, [name]: value }))
+    }, 500),
+    []
+  )
   const handleSubmit = async (e) => {
     e.preventDefault();
     const validationErrors = await ValidationFrom();
@@ -60,7 +66,7 @@ const SignUpPage = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target
-    setFormData({ ...formData, [name]: value })
+    handelDebounce(name, value)
   }
 
   return (
