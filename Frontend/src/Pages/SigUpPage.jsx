@@ -18,7 +18,7 @@ const SignUpPage = () => {
     email: "",
     password: "",
   })
-  console.log(formData);
+
 
   const [errors, setErrors] = useState({})
 
