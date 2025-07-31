@@ -1,4 +1,5 @@
 import { configureStore, createSlice } from "@reduxjs/toolkit";
+import { nanoid } from "@reduxjs/toolkit";
 
 const initialState = {
  messages: {}
@@ -12,15 +13,19 @@ export const messageSlice = createSlice({
    state.messages = (action.payload)
   }),
   sendmessage: (state, action) => {
-   const { to, text } = action.payload
+   const { to, from, text } = action.payload
    if (!state.messages[to]) {
     state.messages[to] = []
    }
    state.messages[to].push({
+    id: nanoid(), // har message ka unique id
+    to,
     text,
-    from: "me",
+    from,
+    status: "sent",
     timeStamp: Date.now()
-   })
+   }
+   )
   }
  }
 })
