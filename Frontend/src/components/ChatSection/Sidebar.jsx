@@ -23,7 +23,7 @@ const Sidebar = () => {
       }
     }
     getData()
-  }, [formData])
+  }, [setUsers])
 
 
   return (
