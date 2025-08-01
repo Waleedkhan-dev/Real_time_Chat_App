@@ -1,4 +1,5 @@
 // userSlice.js
+import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
  currentUser: null,
  selectedUser: null

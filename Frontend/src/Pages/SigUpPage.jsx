@@ -63,10 +63,14 @@ const SignUpPage = () => {
     }
   };
 
+  const sign = () => {
+    console.log("hello developer");
 
+  }
   const handleChange = (e) => {
     const { name, value } = e.target
-    handelDebounce(name, value)
+    setFormData((prev) => ({ ...prev, [name]: value }))
+    // handelDebounce(name, value)
   }
 
   return (
@@ -124,7 +128,7 @@ const SignUpPage = () => {
               {errors.password && <p className="text-sm text-red-500">{errors.password}</p>}
             </div>
 
-            <button
+            <button onClick={sign}
               type="submit"
               className="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition-all"
             >
