@@ -23,6 +23,6 @@ app.use(cookiePareser())
 app.use("/api/auth", authRoute)
 app.use("/api/message", messageRoute)
 app.listen(port, () => {
- console.log(`server is runing on port ${port}`);
+ console.log(`server is runing on port ${port}|| 5000`);
  connectDb()
 })
